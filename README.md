@@ -1,8 +1,8 @@
 # client-jamf-proxy
 
-Intended for macOS administrators in a Jamf Pro environment.
+Intended for macOS administrators in an Jamf Pro environment.
 
-Let macOS clients fetch data from Jamf API without autentication – and only the data of your choosing.
+Fetch non sensitive data about a Computer from Jamf API without autentication.
 ```shell
 # serial=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
 curl 127.0.0.1:5000/computer/$serial
@@ -18,7 +18,7 @@ curl 127.0.0.1:5000/computer/$serial
 ## Getting Started 
 
 ### Prerequisities
-* Python3 – a `venv` is recommended
+* python3
 * pip3
 
 ### Usage
