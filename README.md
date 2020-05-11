@@ -4,8 +4,15 @@ Intended for macOS administrators in a Jamf Pro environment.
 
 Let macOS clients fetch data from Jamf API without autentication – and only the data of your choosing.
 ```shell
-SERIAL=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
-curl 127.0.0.1:5000/compyter/$SERIAL 
+# serial=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
+curl 127.0.0.1:5000/computer/$serial
+{
+  "asset_tag": "59458", 
+  "serial_number": "C02ZN353MD8F", 
+  "username": "henrik.engstrom@shi******.com", 
+  "ad_user": "henen62", 
+  "shared_computer": "False"
+}
 ```
 
 ## Getting Started 
@@ -49,7 +56,7 @@ docker run -d -p 5000:5000 client-jamf-api:latest
 
 #### Useful File Locations (inside container)
 * `/app/app.py` - Main application
-* `/app/config/settings.py` - Contains all settings. Update here to add extenssion attributes.
+* `/app/config/settings.py` - Update to add extenssion attributes
 
 ## Find Me
 * [GitHub](https://github.com/cr3ation/client-jamf-api)
@@ -63,7 +70,7 @@ I use [SemVer](http://semver.org/) for versioning. For the versions available, s
 [tags on this repository](https://github.com/your/repository/tags). 
 
 ## Authors
-* **Henrik Engström** - *Initial work* - [PurpleBooth](https://github.com/cr3ation)
+* **Henrik Engström** - *Initial work* - [cr3ation](https://github.com/cr3ation)
 See also the list of [contributors](https://github.com/cr3ation/client-jamf-api/contributors) who 
 participated in this project.
 
