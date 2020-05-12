@@ -1,4 +1,4 @@
-# client-jamf-proxy
+# client-jamf-api
 
 Intended for macOS administrators in an Jamf Pro environment.
 
