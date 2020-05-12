@@ -17,16 +17,40 @@ curl 127.0.0.1:5000/computer/$serial
 
 ## Getting Started 
 
-### Prerequisities
-* python3
-* pip3
+### Initial setup
 
-### Usage
+1. Clone repository `git clone https://github.com/cr3ation/client-jamf-api/`
+2. Create python3 *venv* and run `pip install -r requirements.txt` to install required modules.
+3. Edit settings in `./app/config/settings_template.py` and save as `./app/config/settings.py`.
+4. Run with `python3 ./app/app.py`
 
-1. Rename `./app/config/settings_template.py` to `./app/config/settings.py`
-2. Update `./app/config/settings.py`. Extenssion attribute ID's can be added together with name of your choosing. Extenssion attribute will be added to output.
-3. `pip install -r requirements.txt`
-4. `python3 ./app/app.py`
+#### Settings
+```python
+# Rename settings_sample.py to settings.py
+# Generate jss_credentials with:
+# printf "username:password" | iconv -t ISO-8859-1 | base64 -i -
+
+jss_server = "YOUR_JAMF_PRO_URL"            
+jss_credential = "YOUR_CREDENTIALS"         
+
+attributes = {
+    "extension_attributes": [
+        {
+            "id": 32,                       # Extenssion attribute ID
+            "name": "shared_computer",      # Name in API output
+        },
+        {
+            "id": 11,
+            "name": "Whetever..."
+        }
+    ]
+}
+```
+
+Examples:
+1. Set: `YOUR_JAMF_PRO_URL` to `company.jamfcloud.com`
+2. Set: `YOUR_CREDENTIALS` to output of `printf "username:password" | iconv -t ISO-8859-1 | base64 -i -`
+3. Modify custom extenssion attributes. This attributes will be added out the webrequest.
 
 
 ## Docker
@@ -58,16 +82,8 @@ docker run -d -p 5000:5000 client-jamf-api:latest
 * `/app/app.py` - Main application
 * `/app/config/settings.py` - Update to add extenssion attributes
 
-## Find Me
-* [GitHub](https://github.com/cr3ation/client-jamf-api)
-* [Quay.io](https://quay.io/repository/your/docker-repository)
-
 ## Contributing
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on code of conduct, and the process for submitting pull requests.
-
-## Versioning
-I use [SemVer](http://semver.org/) for versioning. For the versions available, see the 
-[tags on this repository](https://github.com/your/repository/tags). 
 
 ## Authors
 * **Henrik Engström** - *Initial work* - [cr3ation](https://github.com/cr3ation)
@@ -76,6 +92,3 @@ participated in this project.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
-## Acknowledgments
-* Internet. Used ut a lot.
