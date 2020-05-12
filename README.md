@@ -24,7 +24,7 @@ curl 127.0.0.1:5000/computer/$serial
 4. Run with `python3 ./app/app.py`
 
 ### Windows
-No guide created. Feel free to make apull request.
+No guide created. Feel free to make pull request.
 
 #### Settings
 ```python
@@ -48,7 +48,6 @@ attributes = {
     ]
 }
 ```
-Examples:
 1. Set: `YOUR_JAMF_PRO_URL` to `company.jamfcloud.com`
 2. Set: `YOUR_CREDENTIALS` to output of `printf "username:password" | iconv -t ISO-8859-1 | base64 -i -`
 3. Modify custom extenssion attributes. This attributes will be added out the webrequest.
