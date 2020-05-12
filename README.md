@@ -26,7 +26,7 @@ curl 127.0.0.1:5000/computer/$serial
 ### Windows
 No guide created. Feel free to make pull request.
 
-#### Settings
+### Settings
 ```python
 # Rename settings_sample.py to settings.py
 # Generate jss_credentials with:
@@ -48,9 +48,9 @@ attributes = {
     ]
 }
 ```
-1. Set: `YOUR_JAMF_PRO_URL` to `company.jamfcloud.com`
-2. Set: `YOUR_CREDENTIALS` to output of `printf "username:password" | iconv -t ISO-8859-1 | base64 -i -`
-3. Modify `extenssion_attributes`. Attributes is added out the web response with `name` as key.
+1. Set `YOUR_JAMF_PRO_URL` to `company.jamfcloud.com`
+2. Set `YOUR_CREDENTIALS` to output of `printf "username:password" | iconv -t ISO-8859-1 | base64 -i -`
+3. Modify `extenssion_attributes`. Attributes is added out the web response with `name` as key
 
 Extenssion Attribute ID is located in Jamf Pro URL.
 ![ExtenssionAttributes](https://github.com/cr3ation/client-jamf-api/blob/master/docs/img/extenssion_attributes_id.png)
@@ -82,7 +82,7 @@ curl 127.0.0.1:5000/computer/C02ZN353MD8F > /Library/foo/bar/computer_info.json
 # Set ComputerName
 # Set HostName
 # Set LocalHostName
-# Write ad-user to settingsfile
+# Write ad-user to settings file
 ...
 ```
 
