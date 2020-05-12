@@ -15,14 +15,16 @@ curl 127.0.0.1:5000/computer/$serial
 }
 ```
 
-## Getting Started 
+## Installation
 
-### Initial setup
-
+### OS X & Linux
 1. Clone repository `git clone https://github.com/cr3ation/client-jamf-api/`
 2. Create python3 *venv* and run `pip install -r requirements.txt` to install required modules.
 3. Edit settings in `./app/config/settings_template.py` and save as `./app/config/settings.py`.
 4. Run with `python3 ./app/app.py`
+
+### Windows
+No guide created. Feel free to make apull request.
 
 #### Settings
 ```python
@@ -46,6 +48,9 @@ attributes = {
     ]
 }
 ```
+![ExtenssionAttributes](https://github.com/cr3ation/client-jamf-proxy/docs/img/extenssion_attributes_id.png)
+Extenssion Attribute ID found in Jamf Pro URL.
+
 
 Examples:
 1. Set: `YOUR_JAMF_PRO_URL` to `company.jamfcloud.com`
