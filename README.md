@@ -48,14 +48,44 @@ attributes = {
     ]
 }
 ```
-![ExtenssionAttributes](https://github.com/cr3ation/client-jamf-proxy/docs/img/extenssion_attributes_id.png)
-Extenssion Attribute ID found in Jamf Pro URL.
-
-
 Examples:
 1. Set: `YOUR_JAMF_PRO_URL` to `company.jamfcloud.com`
 2. Set: `YOUR_CREDENTIALS` to output of `printf "username:password" | iconv -t ISO-8859-1 | base64 -i -`
 3. Modify custom extenssion attributes. This attributes will be added out the webrequest.
+
+Extenssion Attribute ID is located in Jamf Pro URL.
+![ExtenssionAttributes](https://github.com/cr3ation/client-jamf-api/blob/master/docs/img/extenssion_attributes_id.png)
+
+## Usage Example
+Test if server is up and running
+```shell
+curl 127.0.0.1:5000/hello
+"Hello, World!"
+```
+
+Get data from serialnumber
+```
+curl 127.0.0.1:5000/computer/C02ZN353MD8F
+{
+  "asset_tag": "59458", 
+  "serial_number": "C02ZN353MD8F", 
+  "username": "henrik.engstrom@company.com", 
+  "ad_user": "henen62", 
+  "shared_computer": "False"
+}
+```
+
+Example of use by a client machine
+```
+serial=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
+curl 127.0.0.1:5000/computer/C02ZN353MD8F > /Library/foo/bar/computer_info.json
+
+# Set ComputerName
+# Set HostName
+# Set LocalHostName
+# Write ad-user to settingsfile
+...
+```
 
 
 ## Docker
