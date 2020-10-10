@@ -1,4 +1,4 @@
-# client-jamf-proxy
+# client-jamf-api
 
 Intended for macOS administrators in an Jamf Pro environment.
 
@@ -15,16 +15,18 @@ curl 127.0.0.1:5000/computer/$serial
 }
 ```
 
-## Getting Started 
+## Installation
 
-### Initial setup
-
+### OS X & Linux
 1. Clone repository `git clone https://github.com/cr3ation/client-jamf-api/`
 2. Create python3 *venv* and run `pip install -r requirements.txt` to install required modules.
 3. Edit settings in `./app/config/settings_template.py` and save as `./app/config/settings.py`.
 4. Run with `python3 ./app/app.py`
 
-#### Settings
+### Windows
+No guide created. Feel free to make pull request.
+
+### Settings
 ```python
 # Rename settings_sample.py to settings.py
 # Generate jss_credentials with:
@@ -46,11 +48,43 @@ attributes = {
     ]
 }
 ```
+1. Set `YOUR_JAMF_PRO_URL` to `company.jamfcloud.com`
+2. Set `YOUR_CREDENTIALS` to output of `printf "username:password" | iconv -t ISO-8859-1 | base64 -i -`
+3. Modify `extenssion_attributes`. Attributes is added out the web response with `name` as key
 
-Examples:
-1. Set: `YOUR_JAMF_PRO_URL` to `company.jamfcloud.com`
-2. Set: `YOUR_CREDENTIALS` to output of `printf "username:password" | iconv -t ISO-8859-1 | base64 -i -`
-3. Modify custom extenssion attributes. This attributes will be added out the webrequest.
+Extenssion Attribute ID is located in Jamf Pro URL.
+![ExtenssionAttributes](https://github.com/cr3ation/client-jamf-api/blob/master/docs/img/extenssion_attributes_id.png)
+
+## Usage Example
+Test if server is up and running
+```shell
+curl 127.0.0.1:5000/hello
+"Hello, World!"
+```
+
+Get data from serialnumber
+```
+curl 127.0.0.1:5000/computer/C02ZN353MD8F
+{
+  "asset_tag": "59458", 
+  "serial_number": "C02ZN353MD8F", 
+  "username": "henrik.engstrom@company.com", 
+  "ad_user": "henen62", 
+  "shared_computer": "False"
+}
+```
+
+Example of use by a client machine
+```
+serial=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
+curl 127.0.0.1:5000/computer/C02ZN353MD8F > /Library/foo/bar/computer_info.json
+
+# Set ComputerName
+# Set HostName
+# Set LocalHostName
+# Write ad-user to settings file
+...
+```
 
 
 ## Docker
