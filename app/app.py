@@ -1,9 +1,18 @@
 from flask import Flask, request, jsonify
 from flask_restful import Resource, Api
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 import jss
 
+# Create webapp
 app = Flask(__name__)
 api = Api(app)
+
+# Limitations per host per day / hour
+limiter = Limiter(
+    app,
+    key_func=get_remote_address,
+    default_limits=["500 per day", "20 per hour"])
 
 
 class Computer(Resource):
